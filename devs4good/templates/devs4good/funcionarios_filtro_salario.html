@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Funcionários com Salário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Funcionários com Salário</h2>
+        
+        <form method="get">
+            <label for="minimo">Salário Mínimo:</label>
+            <input type="number" name="minimo" id="minimo">
+            <br>
+            <label for="maximo">Salário Máximo:</label>
+            <input type="number" name="maximo" id="maximo">
+            <br>
+            <button type="submit">Filtrar</button>
+        </form>
+        
+        <ul>
+            {% for funcionario in funcionarios %}
+                <li>{{ funcionario.nome }} - Salário: R$ {{ funcionario.cargo.salario }}</li>
+            {% empty %}
+                <li>Nenhum funcionário encontrado com os critérios de filtro.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

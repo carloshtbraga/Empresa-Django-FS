@@ -1,0 +1,45 @@
+<!-- devs4good/funcionario_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do Funcionário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ funcionario.nome }}</h2>
+        <p>Cargo: {{ funcionario.cargo }}</p>
+        <p>Linguagens:
+            {% for linguagem in funcionario.linguagens.all %}
+                {{ linguagem.nome }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p>Salário: {{ funcionario.cargo.salario }}</p>
+        <p>Cidade: {{ funcionario.informacoesfuncionario.cidade }}</p>
+        <p>Estado: {{ funcionario.informacoesfuncionario.estado }}</p>
+        <p>Idade: {{ funcionario.informacoesfuncionario.idade }}</p>
+        <p>Frase Preferida: {{ funcionario.informacoesfuncionario.frase_preferida }}</p>
+        <p>Pokemon Preferido: {{ funcionario.informacoesfuncionario.pokemon_preferido }}</p>
+    </div>
+</body>
+</html>

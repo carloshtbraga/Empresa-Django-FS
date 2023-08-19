@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Novo Fuwwwwwwwwwwwncionário</title>
+</head>
+<body>
+    <h2>Novo Cargo</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form_cargo.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

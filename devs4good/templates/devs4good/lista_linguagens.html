@@ -1,0 +1,55 @@
+<!-- devs4good/lista_linguagens.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Linguagens e Funcionários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Linguagens e Funcionários</h2>
+        <ul>
+            {% for linguagem in linguagens %}
+            <li>
+                <h1>{{ linguagem.nome }}:</h1>
+                
+                <ul>
+                    {% if linguagem.funcionario_set.exists %}
+                        {% for funcionario in linguagem.funcionario_set.all %}
+                            <li>{{ funcionario.nome }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <p>Nenhum funcionário associado a esta linguagem.</p>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+        <a class="new-button" href= "{% url 'nova_linguagem' %}">Cadastrar Nova Linguagem</a><br>
+    </div>
+</body>
+</html>

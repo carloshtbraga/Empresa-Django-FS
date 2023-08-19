@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Novo Fuwwwwwwwwwwwncionário</title>
+</head>
+<body>
+    <h2>Nova Linguagem</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form_linguagem.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
