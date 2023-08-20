@@ -100,7 +100,6 @@ def novo_funcionario(request):
 @login_required
 def lista_cargos(request):
     cargos = Cargo.objects.all()
-    print("weeeeeeeeeeeeeeeeee", cargos)
     return render(request, "devs4good/lista_cargos.html", {"cargos": cargos})
 
 
