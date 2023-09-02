@@ -1,4 +1,3 @@
-<!-- devs4good/funcionario_detail.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,27 +18,49 @@
         }
         h2 {
             color: #333;
-        }
-        p {
             margin-bottom: 10px;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .detail-value {
+            color: #333;
+            margin-left: 10px;
+        }
+        .detail-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>{{ funcionario.nome }}</h2>
-        <p>Cargo: {{ funcionario.cargo }}</p>
-        <p>Linguagens:
-            {% for linguagem in funcionario.linguagens.all %}
-                {{ linguagem.nome }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-        <p>Salário: {{ funcionario.cargo.salario }}</p>
-        <p>Cidade: {{ funcionario.informacoesfuncionario.cidade }}</p>
-        <p>Estado: {{ funcionario.informacoesfuncionario.estado }}</p>
-        <p>Idade: {{ funcionario.informacoesfuncionario.idade }}</p>
-        <p>Frase Preferida: {{ funcionario.informacoesfuncionario.frase_preferida }}</p>
-        <p>Pokemon Preferido: {{ funcionario.informacoesfuncionario.pokemon_preferido }}</p>
+        
+        <div class="detail-section">
+            <p><span class="detail-label">Cargo:</span> <span class="detail-value">{{ funcionario.cargo }}</span></p>
+            <p><span class="detail-label">Linguagens:</span> 
+                {% for linguagem in funcionario.linguagens.all %}
+                    <span class="detail-value">{{ linguagem.nome }}{% if not forloop.last %}, {% endif %}</span>
+                {% endfor %}
+            </p>
+            <p><span class="detail-label">Salário:</span> <span class="detail-value">{{ funcionario.cargo.salario }}</span></p>
+        </div>
+
+        <div class="detail-section">
+            <p><span class="detail-label">Cidade:</span> <span class="detail-value">{{ funcionario.informacoesfuncionario.cidade }}</span></p>
+            <p><span class="detail-label">Estado:</span> <span class="detail-value">{{ funcionario.informacoesfuncionario.estado }}</span></p>
+            <p><span class="detail-label">Idade:</span> <span class="detail-value">{{ funcionario.informacoesfuncionario.idade }}</span></p>
+        </div>
+
+        <div class="detail-section">
+            <p><span class="detail-label">Frase Preferida:</span> <span class="detail-value">{{ funcionario.informacoesfuncionario.frase_preferida }}</span></p>
+            <p><span class="detail-label">Pokemon Preferido:</span> <span class="detail-value">{{ funcionario.informacoesfuncionario.pokemon_preferido }}</span></p>
+        </div>
     </div>
 </body>
 </html>

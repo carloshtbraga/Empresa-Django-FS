@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Novo Fuwwwwwwwwwwwncionário</title>
+    <title>Novo Funcionário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h2>Novo Cargo</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form_cargo.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
+    <div class="container">
+        <h2>Novo Cargo</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="{{ form_cargo.nome.id_for_label }}">Nome:</label>
+            {{ form_cargo.nome }}
+            <label for="{{ form_cargo.salario.id_for_label }}">Salário:</label>
+            {{ form_cargo.salario }}
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
 </body>
 </html>

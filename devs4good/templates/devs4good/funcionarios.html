@@ -15,36 +15,29 @@
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza todo o conteúdo dentro do container */
         }
         h2 {
             color: #333;
-            margin-bottom: 20px;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-        li {
-            margin-bottom: 10px;
-            padding: 15px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-        a:hover {
-            text-decoration: underline;
+        th {
+            background-color: #f2f2f2;
         }
         .new-button {
             margin-top: 20px;
             display: inline-block;
             background-color: #007bff;
+            text-decoration: none;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -60,17 +53,23 @@
 <body>
     <div class="container">
         <h2>Lista de Funcionários</h2>
-        <ul>
-            {% for funcionario in funcionarios %}
-            <li>
-                <a href="{% url 'funcionario_detail' funcionario.pk %}">
-                   Nome: {{ funcionario.nome }} - Cargo: {{ funcionario.cargo }}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        <a class="new-button" href= "{% url 'novo_funcionario' %}">Cadastrar Novo Funcionário</a><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in funcionarios %}
+                <tr>
+                    <td><a href="{% url 'funcionario_detail' funcionario.pk %}">{{ funcionario.nome }}</a></td>
+                    <td>{{ funcionario.cargo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="new-button" href="{% url 'novo_funcionario' %}">Cadastrar Novo Funcionário</a><br>
     </div>
-
 </body>
 </html>

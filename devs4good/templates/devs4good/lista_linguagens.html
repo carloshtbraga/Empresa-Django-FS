@@ -1,4 +1,3 @@
-<!-- devs4good/lista_linguagens.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,40 +15,70 @@
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         h2 {
             color: #333;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-        li {
-            margin-bottom: 10px;
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .new-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .new-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Lista de Linguagens e Funcionários</h2>
-        <ul>
-            {% for linguagem in linguagens %}
-            <li>
-                <h1>{{ linguagem.nome }}:</h1>
-                
-                <ul>
-                    {% if linguagem.funcionario_set.exists %}
-                        {% for funcionario in linguagem.funcionario_set.all %}
-                            <li>{{ funcionario.nome }}</li>
-                        {% endfor %}
-                    {% else %}
-                        <p>Nenhum funcionário associado a esta linguagem.</p>
-                    {% endif %}
-                </ul>
-            </li>
-            {% endfor %}
-        </ul>
-        <a class="new-button" href= "{% url 'nova_linguagem' %}">Cadastrar Nova Linguagem</a><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Linguagem</th>
+                    <th>Funcionários</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for linguagem in linguagens %}
+                <tr>
+                    <td>{{ linguagem.nome }}</td>
+                    <td>
+                        {% if linguagem.funcionario_set.exists %}
+                            <ul>
+                                {% for funcionario in linguagem.funcionario_set.all %}
+                                    <li>{{ funcionario.nome }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Nenhum funcionário associado a esta linguagem.</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="new-button" href="{% url 'nova_linguagem' %}">Cadastrar Nova Linguagem</a><br>
     </div>
 </body>
 </html>
